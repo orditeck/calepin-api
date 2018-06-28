@@ -3,7 +3,7 @@
 Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::middleware('auth:api')->group(function () {
         // Notes
-        Route::apiResource('notes', 'NoteController', ['only' => ['index', 'update', 'store', 'destroy']]);
+        Route::apiResource('notes', 'NoteController');
 
         // Users
         Route::resource('users', 'UserController', ['only' => 'update']);
