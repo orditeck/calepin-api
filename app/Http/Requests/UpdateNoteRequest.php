@@ -24,7 +24,7 @@ class UpdateNoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'     => 'max:100',
+            'title'     => 'required|max:100',
             'content'   => 'required',
             'language'  => 'max:50',
             'private'   => 'boolean',
