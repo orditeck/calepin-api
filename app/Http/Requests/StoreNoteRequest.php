@@ -27,7 +27,7 @@ class StoreNoteRequest extends FormRequest
             'author_id' => 'required|integer|exists:users,id',
             'title'     => 'required|max:100',
             'content'   => 'required',
-            'language'  => 'max:50',
+            'language'  => 'required|max:50',
             'private'   => 'boolean',
             'encrypted' => 'boolean',
         ];

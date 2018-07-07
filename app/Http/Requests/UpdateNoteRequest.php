@@ -26,7 +26,7 @@ class UpdateNoteRequest extends FormRequest
         return [
             'title'     => 'required|max:100',
             'content'   => 'required',
-            'language'  => 'max:50',
+            'language'  => 'required|max:50',
             'private'   => 'boolean',
             'encrypted' => 'boolean',
         ];
