@@ -15,11 +15,12 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
+            $table->uuid('uuid');
+            $table->string('title');
             $table->text('content')->nullable();
             $table->string('language')->nullable();
-            $table->boolean('private')->nullable();
-            $table->boolean('encrypted')->nullable();
+            $table->boolean('public')->default(false);
+            $table->boolean('encrypted')->default(false);
             $table->unsignedInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Note extends Model
 {
@@ -11,11 +12,25 @@ class Note extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'title', 'content', 'language', 'private', 'encrypted'
+        'title', 'content', 'language', 'public', 'encrypted'
     ];
 
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    /**
+     * Return a unique uuid
+     *
+     * @return String
+     */
+    public function generateUuid(): string
+    {
+        do {
+            $uuid = (string) Uuid::uuid4();
+        } while (Note::where('uuid', $uuid)->exists());
+
+        return $uuid;
     }
 }

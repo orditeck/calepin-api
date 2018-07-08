@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Note;
 use Illuminate\Support\ServiceProvider;
 use App\User;
 use App\Observers\UserObserver;
+use App\Note;
+use App\Observers\NoteObserver;
 
 class ObserverServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,7 @@ class ObserverServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        Note::observe(NoteObserver::class);
     }
 
     /**

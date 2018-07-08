@@ -16,10 +16,11 @@ class NoteResource extends JsonResource
     {
         return [
             'id'        => (int) $this->id,
+            'uuid'      => $this->uuid,
             'title'     => $this->title,
             'content'   => $this->content,
             'language'  => $this->language,
-            'private'   => (bool) $this->private,
+            'public'    => (bool) $this->public,
             'encrypted' => (bool) $this->encrypted,
             'author'    => new UserResource($this->whenLoaded('author')),
         ];
