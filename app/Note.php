@@ -9,6 +9,7 @@ class Note extends Model
 {
     use PimpableTrait;
 
+    public $incrementing = false;
     protected $guarded = [];
 
     protected $fillable = [
@@ -29,7 +30,7 @@ class Note extends Model
     {
         do {
             $uuid = (string) Uuid::uuid4();
-        } while (Note::where('uuid', $uuid)->exists());
+        } while (Note::where('id', $uuid)->exists());
 
         return $uuid;
     }

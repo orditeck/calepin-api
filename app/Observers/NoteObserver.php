@@ -14,6 +14,6 @@ class NoteObserver
      */
     public function creating(Note $note)
     {
-        $note->uuid = $note->generateUuid();
+        $note->id = $note->generateUuid();
     }
 }

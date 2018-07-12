@@ -1,22 +1,21 @@
 <?php
-
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class NoteRequest extends FormRequest
+class ShowNoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        $author = User::findOrFail((int) $this->input('author_id'));
-
-        return $author->id === $this->user()->id;
+        return (
+            $this->route('note')->public ||
+            ($this->user('api') && $this->route('note')->author_id === $this->user('api')->id)
+        );
     }
 
     /**
@@ -24,10 +23,8 @@ class NoteRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            'author_id' => 'required|int|exists:users,id'
-        ];
+        return [];
     }
 }

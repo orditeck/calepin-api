@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\DeleteNoteRequest;
-use App\Http\Requests\NoteRequest;
+use App\Http\Requests\IndexNoteRequest;
+use App\Http\Requests\ShowNoteRequest;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
 use App\Note;
@@ -17,14 +17,12 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param NoteRequest $request
+     * @param IndexNoteRequest $request
      * @return \Illuminate\Http\Resources\Json\ResourceCollection
      */
-    public function index(NoteRequest $request): ResourceCollection
+    public function index(IndexNoteRequest $request): ResourceCollection
     {
-        return NoteResource::collection(
-            Note::pimp()->paginate($request->input('limit', 20))
-        );
+        return NoteResource::collection(Note::pimp()->paginate($request->input('limit', 20)));
     }
 
     /**
@@ -36,7 +34,8 @@ class NoteController extends Controller
     public function store(StoreNoteRequest $request): NoteResource
     {
         return new NoteResource(
-            User::find($request->input('author_id'))
+            User
+                ::find($request->input('author_id'))
                 ->notes()
                 ->create($request->all())
         );
@@ -45,15 +44,13 @@ class NoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param NoteRequest $request
-     * @param  int $id
+     * @param ShowNoteRequest $request
+     * @param Note $note
      * @return \App\Http\Resources\NoteResource
      */
-    public function show(NoteRequest $request, $id): NoteResource
+    public function show(ShowNoteRequest $request, Note $note): NoteResource
     {
-        return new NoteResource(
-            Note::pimp()->findOrFail($id)
-        );
+        return new NoteResource($note->pimp()->findOrFail($note->id));
     }
 
     /**
@@ -65,11 +62,7 @@ class NoteController extends Controller
      */
     public function update(UpdateNoteRequest $request, Note $note): NoteResource
     {
-        return new NoteResource(
-            tap($note)->update(
-                $request->except(['author_id'])
-            )
-        );
+        return new NoteResource(tap($note)->update($request->except(['author_id'])));
     }
 
     /**
