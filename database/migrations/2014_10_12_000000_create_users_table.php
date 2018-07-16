@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
                 ->string('api_token', 60)
                 ->unique()
                 ->nullable();
-            $table->dateTime('last_login');
+            $table->dateTime('last_login')->nullable();
             $table->timestamps();
         });
     }

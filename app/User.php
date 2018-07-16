@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
@@ -9,13 +8,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
-    ];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'last_login'];
 
-    protected $hidden = [
-        'password', 'api_token',
-    ];
+    protected $hidden = ['password', 'api_token'];
 
     public function notes()
     {
@@ -40,5 +35,4 @@ class User extends Authenticatable
 
         return $api_token;
     }
-
 }
