@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
-            return response()->json(['error' => 'Invalid credentials'], 401);
+            return response()->json(['errors' => ['Invalid credentials']], 422);
         }
 
         $user = User::where('email', $request->input('email'))->first();

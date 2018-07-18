@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,7 +12,7 @@ class DeleteNoteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->route('note')->author_id === $this->user()->id;
     }
 
     /**

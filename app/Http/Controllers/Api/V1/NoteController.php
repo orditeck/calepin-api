@@ -73,7 +73,7 @@ class NoteController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function delete(DeleteNoteRequest $request, Note $note)
+    public function destroy(DeleteNoteRequest $request, Note $note)
     {
         $note->delete();
         return response()->noContent();
