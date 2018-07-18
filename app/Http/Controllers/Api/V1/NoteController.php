@@ -1,16 +1,16 @@
 <?php
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\DeleteNoteRequest;
-use App\Http\Requests\IndexNoteRequest;
-use App\Http\Requests\ShowNoteRequest;
-use App\Http\Requests\StoreNoteRequest;
-use App\Http\Requests\UpdateNoteRequest;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Controllers\Controller;
 use App\Note;
 use App\User;
 use App\Http\Resources\NoteResource;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\IndexNoteRequest;
+use App\Http\Requests\StoreNoteRequest;
+use App\Http\Requests\ShowNoteRequest;
+use App\Http\Requests\UpdateNoteRequest;
+use App\Http\Requests\DeleteNoteRequest;
 
 class NoteController extends Controller
 {
