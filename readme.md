@@ -26,3 +26,7 @@ php artisan db:seed
 migration/seeding in a dev environment
 - `php artisan db:drop-tables --force --yes && php artisan migrate && php artisan db:seed` 
 is also useful right now when testing new seed
+
+## License
+
+Copyright (C) 2018 Keven "orditeck" Lefebvre
