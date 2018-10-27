@@ -7,7 +7,12 @@ use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-    public function testNotesGet()
+    /**
+     * it tests that a user is authenticated. The password comes from database/factories/UserFactory
+     *
+     * @see database/factories/UserFactory
+     */
+    public function testUserAuthentication()
     {
         $user = factory(User::class)->create();
 
