@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\User;
 use Tests\TestCase;
 
-class NotesTest extends TestCase
+class AuthTest extends TestCase
 {
     public function testNotesGet()
     {
@@ -18,13 +18,6 @@ class NotesTest extends TestCase
 
         $response = $this->json('POST', 'api/v1/auth/login', $body, ['Accept' => 'application/json']);
 
-        $authenticated = json_decode($response->getContent(), true);
-        $token = $authenticated['meta']['access_token'];
-
-        $response = $this->get('api/v1/notes', [
-            'authorization' => "Bearer $token"
-        ]);
-
-        var_dump($response->getContent());
+        self::assertTrue($response->getStatusCode() === 200);
     }
 }
