@@ -29,4 +29,4 @@ is also useful right now when testing new seed
 
 ## License
 
-Copyright (C) 2018 Keven "orditeck" Lefebvre
+Copyright (C) 2019 Keven "orditeck" Lefebvre
